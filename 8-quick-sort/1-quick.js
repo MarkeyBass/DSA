@@ -1,18 +1,19 @@
-function pivot(arr, startIdx = 0, endIdx = arr.length - 1) {
+function pivot(arr, start = 0, end = arr.length - 1) {
   const swap = (arr, idx1, idx2) => {
     [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
   };
-  let pivotIdx = startIdx;
+  let pivot = start;
 
   for (let i = 0; i < arr.length; i++) {
-    if (arr[pivotIdx] > arr[i]) {
-      pivotIdx++;
-      swap(arr, arr[pivotIdx], arr[pivotIdx + 1]);
+    if (arr[pivot] > arr[i]) {
+      pivot++;
+      swap(arr, arr[pivot], arr[pivot + 1]);
     }
   }
 
   console.log(arr);
-  return arr;
+  console.log(pivot)
+  return pivot
 }
 
-pivot([2, 1, 0]);
+pivot([4, 8, 2, 1, 5, 7, 6, 3]);
