@@ -5,17 +5,19 @@ function pivot(arr, start = 0, end = arr.length - 1) {
   let pivot = arr[start];
   let swapIdx = start;
 
+  console.log(arr)
   for (let i = start + 1; i < arr.length; i++) {
     if (pivot > arr[i]) {
       swapIdx++;
       swap(arr, swapIdx, i);
+      console.log(arr)
     }
   }
   swap(arr, swapIdx, start)
 
   console.log(arr);
-  console.log(pivot);
-  return pivot;
+  console.log(swapIdx);
+  return swapIdx;
 }
 
 pivot([4, 8, 2, 1, 5, 7, 6, 3]);
