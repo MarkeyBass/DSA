@@ -1,3 +1,5 @@
+// this function is used to find the pivot index of the array
+// It takes the start index (Which will be the pivot value) and puts all the values less than the pivot to the left of the pivot and all the values greater than the pivot to the right of the pivot
 function pivot(arr, start = 0, end = arr.length - 1) {
   const swap = (arr, idx1, idx2) => {
     [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
