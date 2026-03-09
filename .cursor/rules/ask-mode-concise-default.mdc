@@ -1,0 +1,14 @@
+---
+description: Keep Ask mode responses concise by default
+alwaysApply: true
+---
+
+# Ask Mode Response Style
+
+When in Ask mode:
+
+- Respond concisely by default.
+- Use short, direct answers focused on the user's question.
+- Do not add extra background unless needed for correctness.
+- If the user explicitly asks to elaborate, provide a more detailed explanation.
+- If the user explicitly asks for depth, include deeper context, examples, and trade-offs.
