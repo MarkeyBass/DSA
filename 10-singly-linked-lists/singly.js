@@ -27,51 +27,41 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
-  // remove from tail
-  pop() {
-    if (!this.head) return;
-    if(this.length = 1) {
-      const returnedNode = this.head
-      this.tail = null
-      this.head = null
-      return returnedNode
-    }
-    let currNode = this.head;
-    let returnedNode;
-    while (currNode.next) {
-      if (!currNode.next.next) {
-        returnedNode = JSON.parse(JSON.stringify(currNode.next));
-        delete currNode.next;
-        currNode.next = null;
-        this.tail = currNode;
-        this.length--;
-      } else {
-        currNode = currNode.next;
-      }
-    }
-    return returnedNode;
-  }
 
   pop() {
     if (!this.head) return undefined;
-    var current = this.head;
-    var newTail = current;
+    let current = this.head;
+    let newTail = current;
+
     while (current.next) {
       newTail = current;
       current = current.next;
     }
-    this.tail = newTail;
-    this.tail.next = null;
+
+    this.tail = `newTail`;
+    newTail.next = null;
+
     this.length--;
     if (this.length === 0) {
       this.head = null;
       this.tail = null;
     }
+
     return current;
+  }
+
+  shift() {
+    if (!this.head) return undefined;
+    const currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    if (this.length === 0) this.tail = null;
+    return currentHead;
   }
 
   traverse() {
     let current = this.head;
+    if (!current) return undefined;
     while (current) {
       console.log(current.val);
       current = current.next;
@@ -87,23 +77,51 @@ class SinglyLinkedList {
 
 // console.log(first)
 
+// push test
 const list = new SinglyLinkedList();
 list.push("HELLO");
 list.push("GOODBYE");
 list.push("Final");
 list.push("Really Final");
 
+const emptyList = new SinglyLinkedList();
+
+
+// pop test
+// console.dir(list, { depth: null });
+// console.log("===============================");
+// console.dir(list.pop(), { depth: null });
+// console.log("===============================");
+// console.dir(list, { depth: null });
+
+// console.log("===============================");
+
+// list.traverse();
+
+// console.log("===============================");
+
+// console.log(emptyList.pop());
+
+
+// shift test
 console.dir(list, { depth: null });
 console.log("===============================");
-console.dir(list.pop(), { depth: null });
+console.log(list.shift());
 console.log("===============================");
 console.dir(list, { depth: null });
-
 console.log("===============================");
-
-list.traverse();
-
+console.log(list.shift());
 console.log("===============================");
-
-const list2 = new SinglyLinkedList();
-console.log(list2.pop());
+console.dir(list, { depth: null });
+console.log("===============================");
+console.log(list.shift());
+console.log("===============================");
+console.dir(list, { depth: null });
+console.log("===============================");
+console.log(list.shift());
+console.log("===============================");
+console.dir(list, { depth: null });
+console.log("===============================");
+console.log(list.shift());
+console.log("===============================");
+console.dir(list, { depth: null });
