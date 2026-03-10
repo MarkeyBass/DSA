@@ -64,13 +64,12 @@ class SinglyLinkedList {
     if(this.length === 0) {
       this.head = newNode;
       this.tail = newNode;
-      this.length++
     } else {
       const oldHead = this.head;
       newNode.next = oldHead;
-      this.head = newNead;
       this.head = newNode;
     } 
+    this.length++
     return newNode;
   }
 
@@ -150,7 +149,7 @@ const emptyList = new SinglyLinkedList();
 
 console.dir(list, { depth: null });
 console.log("=======================")
-console.log(list.shift("Ek!!!"))
+console.log(list.unshift("Ek!!!"))
 console.log("=======================")
 console.dir(list, { depth: null });
 
