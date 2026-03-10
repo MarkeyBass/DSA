@@ -98,6 +98,15 @@ class SinglyLinkedList {
     return current;
   }
 
+  set(index, val) {
+    const foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
+
   traverse() {
     let current = this.head;
     if (!current) return undefined;
@@ -175,13 +184,26 @@ const emptyList = new SinglyLinkedList();
 // console.log("=======================");
 // console.dir(list.unshift("Ek!!!"), { depth: null });
 
-// ###############
-// # unshift get #
-// ###############
+// ############
+// # get test #
+// ############
 
-console.dir(list.get(-1), { depth: null });
-console.dir(list.get(0), { depth: null });
-console.dir(list.get(1), { depth: null });
-console.dir(list.get(2), { depth: null });
-console.dir(list.get(3), { depth: null });
-console.dir(list.get(4), { depth: null });
+// console.dir(list.get(-1), { depth: null });
+// console.dir(list.get(0), { depth: null });
+// console.dir(list.get(1), { depth: null });
+// console.dir(list.get(2), { depth: null });
+// console.dir(list.get(3), { depth: null });
+// console.dir(list.get(4), { depth: null });
+
+// ############
+// # set test #
+// ############
+
+console.dir(list.set(-1, "!"), { depth: null });
+// console.log(list.get(0));
+// console.log(list.set(0, "@"));
+// console.log(list.get(0));
+// console.log("================")
+// console.log(list.get(1));
+// console.log(list.set(1, "@"));
+// console.log(list.get(1));
