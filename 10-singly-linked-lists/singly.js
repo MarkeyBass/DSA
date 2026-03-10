@@ -59,6 +59,21 @@ class SinglyLinkedList {
     return currentHead;
   }
 
+  unshift(val) {
+    const newNode = new Node(val);
+    if(this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++
+    } else {
+      const oldHead = this.head;
+      newNode.next = oldHead;
+      this.head = newNead;
+      this.head = newNode;
+    } 
+    return newNode;
+  }
+
   traverse() {
     let current = this.head;
     if (!current) return undefined;
@@ -86,8 +101,9 @@ list.push("Really Final");
 
 const emptyList = new SinglyLinkedList();
 
-
-// pop test
+// ############
+// # pop test #
+// ############
 // console.dir(list, { depth: null });
 // console.log("===============================");
 // console.dir(list.pop(), { depth: null });
@@ -102,26 +118,39 @@ const emptyList = new SinglyLinkedList();
 
 // console.log(emptyList.pop());
 
+// ##############
+// # shift test #
+// ##############
+// console.dir(list, { depth: null });
+// console.log("===============================");
+// console.log(list.shift());
+// console.log("===============================");
+// console.dir(list, { depth: null });
+// console.log("===============================");
+// console.log(list.shift());
+// console.log("===============================");
+// console.dir(list, { depth: null });
+// console.log("===============================");
+// console.log(list.shift());
+// console.log("===============================");
+// console.dir(list, { depth: null });
+// console.log("===============================");
+// console.log(list.shift());
+// console.log("===============================");
+// console.dir(list, { depth: null });
+// console.log("===============================");
+// console.log(list.shift());
+// console.log("===============================");
+// console.dir(list, { depth: null });
 
-// shift test
+
+// ################
+// # unshift test #
+// ################
+
 console.dir(list, { depth: null });
-console.log("===============================");
-console.log(list.shift());
-console.log("===============================");
+console.log("=======================")
+console.log(list.shift("Ek!!!"))
+console.log("=======================")
 console.dir(list, { depth: null });
-console.log("===============================");
-console.log(list.shift());
-console.log("===============================");
-console.dir(list, { depth: null });
-console.log("===============================");
-console.log(list.shift());
-console.log("===============================");
-console.dir(list, { depth: null });
-console.log("===============================");
-console.log(list.shift());
-console.log("===============================");
-console.dir(list, { depth: null });
-console.log("===============================");
-console.log(list.shift());
-console.log("===============================");
-console.dir(list, { depth: null });
+
