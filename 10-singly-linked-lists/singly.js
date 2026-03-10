@@ -61,16 +61,41 @@ class SinglyLinkedList {
 
   unshift(val) {
     const newNode = new Node(val);
-    if(this.length === 0) {
+    if (this.length === 0) {
       this.head = newNode;
       this.tail = newNode;
     } else {
       const oldHead = this.head;
       newNode.next = oldHead;
       this.head = newNode;
-    } 
-    this.length++
+    }
+    this.length++;
     return this;
+  }
+
+  // get(searchIndex) {
+  //   if (searchIndex < 0 || searchIndex > this.length - 1) {
+  //     return undefined;
+  //   } else if (searchIndex === 0) {
+  //     return this.head;
+  //   } else {
+  //     let currNode = this.head;
+  //     for (let i = 1; i <= searchIndex; i++) {
+  //       currNode = currNode.next;
+  //       if (i === searchIndex) return currNode;
+  //     }
+  //   }
+  // }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    let counter = 0;
+    let current = this.head;
+    while (counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
   }
 
   traverse() {
@@ -142,13 +167,21 @@ const emptyList = new SinglyLinkedList();
 // console.log("===============================");
 // console.dir(list, { depth: null });
 
-
 // ################
 // # unshift test #
 // ################
 
-console.dir(list, { depth: null });
-console.log("=======================")
-console.dir(list.unshift("Ek!!!"), { depth: null })
+// console.dir(list, { depth: null });
+// console.log("=======================");
+// console.dir(list.unshift("Ek!!!"), { depth: null });
 
+// ###############
+// # unshift get #
+// ###############
 
+console.dir(list.get(-1), { depth: null });
+console.dir(list.get(0), { depth: null });
+console.dir(list.get(1), { depth: null });
+console.dir(list.get(2), { depth: null });
+console.dir(list.get(3), { depth: null });
+console.dir(list.get(4), { depth: null });
