@@ -70,7 +70,7 @@ class SinglyLinkedList {
       this.head = newNode;
     } 
     this.length++
-    return newNode;
+    return this;
   }
 
   traverse() {
@@ -149,7 +149,6 @@ const emptyList = new SinglyLinkedList();
 
 console.dir(list, { depth: null });
 console.log("=======================")
-console.log(list.unshift("Ek!!!"))
-console.log("=======================")
-console.dir(list, { depth: null });
+console.dir(list.unshift("Ek!!!"), { depth: null })
+
 
