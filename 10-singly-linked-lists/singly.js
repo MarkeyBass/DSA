@@ -175,18 +175,6 @@ class SinglyLinkedList {
     return this;
   }
 
-// [100, 201, 250 ,350 ,999]
-// curr next
-// null <- curr
-// prev curr
-// prev <- curr next
-//        prev curr
-//        prev <-curr
-
-// prev=null
-// next=null
-
-
   traverse() {
     let current = this.head;
     if (!current) return undefined;
@@ -318,9 +306,9 @@ class SinglyLinkedList {
 // # remove reverse #
 // ##################
 
-const list3 = new SinglyLinkedList()
-list3.push(100).push(201).push(350).push(999)
+const list3 = new SinglyLinkedList();
+list3.push(100).push(201).push(350).push(999);
 
-list3.print()
-list3.reverse()
-list3.print()
+list3.print();
+list3.reverse();
+list3.print();
