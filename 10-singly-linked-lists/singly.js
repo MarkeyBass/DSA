@@ -146,6 +146,47 @@ class SinglyLinkedList {
     return removedNode;
   }
 
+  print() {
+    const arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    console.log(arr);
+  }
+
+  reverse() {
+    // the var we're currently looking at
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next = null;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+
+    return this;
+  }
+
+// [100, 201, 250 ,350 ,999]
+// curr next
+// null <- curr
+// prev curr
+// prev <- curr next
+//        prev curr
+//        prev <-curr
+
+// prev=null
+// next=null
+
+
   traverse() {
     let current = this.head;
     if (!current) return undefined;
@@ -156,22 +197,22 @@ class SinglyLinkedList {
   }
 }
 
-// const first = new Node("Hi")
-// first.next = new Node("there")
-// first.next.next = new Node("how")
-// first.next.next.next = new Node("are")
-// first.next.next.next.next = new Node("you")
+// // const first = new Node("Hi")
+// // first.next = new Node("there")
+// // first.next.next = new Node("how")
+// // first.next.next.next = new Node("are")
+// // first.next.next.next.next = new Node("you")
 
-// console.log(first)
+// // console.log(first)
 
-// push test
-const list = new SinglyLinkedList();
-list.push("HELLO");
-list.push("GOODBYE");
-list.push("Final");
-list.push("Really Final");
+// // push test
+// const list = new SinglyLinkedList();
+// list.push("HELLO");
+// list.push("GOODBYE");
+// list.push("Final");
+// list.push("Really Final");
 
-const emptyList = new SinglyLinkedList();
+// const emptyList = new SinglyLinkedList();
 
 // ############
 // # pop test #
@@ -265,10 +306,21 @@ const emptyList = new SinglyLinkedList();
 // # remove test #
 // ###############
 
-console.log(list.remove(-1));
-console.dir(list, { depth: null });
-console.log(list.remove(0));
-console.dir(list, { depth: null });
-console.log(list.remove(100));
-console.log(list.remove(2));
-console.dir(list, { depth: null });
+// console.log(list.remove(-1));
+// console.dir(list, { depth: null });
+// console.log(list.remove(0));
+// console.dir(list, { depth: null });
+// console.log(list.remove(100));
+// console.log(list.remove(2));
+// console.dir(list, { depth: null });
+
+// ##################
+// # remove reverse #
+// ##################
+
+const list3 = new SinglyLinkedList()
+list3.push(100).push(201).push(350).push(999)
+
+list3.print()
+list3.reverse()
+list3.print()
