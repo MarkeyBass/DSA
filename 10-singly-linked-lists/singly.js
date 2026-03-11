@@ -38,7 +38,7 @@ class SinglyLinkedList {
       current = current.next;
     }
 
-    this.tail = `newTail`;
+    this.tail = newTail;
     newTail.next = null;
 
     this.length--;
@@ -125,6 +125,25 @@ class SinglyLinkedList {
     foundNode.next = newNode;
     this.length++;
     return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index > this.length - 1) {
+      return undefined;
+    }
+    if (index === 0) {
+      return this.shift();
+    }
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+
+    const prevNode = this.get(index - 1);
+    const removedNode = prevNode.next;
+    prevNode.next = prevNode.next.next;
+
+    this.length--;
+    return removedNode;
   }
 
   traverse() {
@@ -232,12 +251,24 @@ const emptyList = new SinglyLinkedList();
 // # insert test #
 // ###############
 
-console.log(list.insert(-1, "bla"));
+// console.log(list.insert(-1, "bla"));
+// console.dir(list, { depth: null });
+// console.log(list.insert(0, "bla"));
+// console.dir(list, { depth: null });
+// console.log(list.insert(1, "bla"));
+// console.dir(list, { depth: null });
+// console.log(list.insert(list.length, "bla"));
+// console.dir(list, { depth: null });
+// console.log(list.insert(list.length + 3, "bla"));
+
+// ###############
+// # remove test #
+// ###############
+
+console.log(list.remove(-1));
 console.dir(list, { depth: null });
-console.log(list.insert(0, "bla"));
+console.log(list.remove(0));
 console.dir(list, { depth: null });
-console.log(list.insert(1, "bla"));
+console.log(list.remove(100));
+console.log(list.remove(2));
 console.dir(list, { depth: null });
-console.log(list.insert(list.length, "bla"));
-console.dir(list, { depth: null });
-console.log(list.insert(list.length + 3, "bla"));
