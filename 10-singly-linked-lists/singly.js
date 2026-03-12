@@ -156,21 +156,70 @@ class SinglyLinkedList {
     console.log(arr);
   }
 
-  reverse() {
-    // the var we're currently looking at
-    let node = this.head;
-    this.head = this.tail;
-    this.tail = node;
+  // reverse() {
+  //   // the var we're currently looking at
+  //   let node = this.head;
+  //   // this.head = this.tail;
+  //   // this.tail = node;
 
-    let next = null;
+  //   let next = null;
+  //   let prev = null;
+
+  //   for (let i = 0; i < this.length; i++) {
+  //     next = node.next;
+  //     node.next = prev;
+  //     prev = node;
+  //     node = next;
+  //   }
+
+  //   let tempHead = this.head
+  //   this.head = this.tail;
+  //   this.tail = tempHead;
+
+  //   return this;
+  // }
+
+  // reverse() {
+  //   if (this.length < 2) return this;
+  //   let node = this.head;
+  //   let next = null;
+  //   let prev = null;
+
+  //   // a -> b -> c -> d
+  //   // <- A  (B) -> c -> d
+  //   // <- A <- (B)  C -> d
+  //   for (let i = 0; i < this.length; i++) {
+  //     next = node.next;
+  //     node.next = prev;
+  //     prev = node;
+  //     node = next;
+  //   }
+
+  //   [this.head, this.tail] = [this.tail, this.head];
+  //   return this;
+  // }
+
+  reverse() {
+    if (this.length <= 1) return this;
+
+    let node = this.head;
+    let next = undefined;
     let prev = null;
 
+    // [ 100, 201, 350, 999 ]
+
     for (let i = 0; i < this.length; i++) {
+      // reassigning next before changing node
       next = node.next;
+      // repointing curr node
       node.next = prev;
+      // reassigning temp vars
       prev = node;
+      // finished repointing and reassigning -> moving one step forward
       node = next;
     }
+
+    [this.head, this.tail] = [this.tail, this.head];
 
     return this;
   }
@@ -310,5 +359,7 @@ const list3 = new SinglyLinkedList();
 list3.push(100).push(201).push(350).push(999);
 
 list3.print();
+console.dir(list3, { depth: null });
 list3.reverse();
+console.dir(list3, { depth: null });
 list3.print();
