@@ -1,6 +1,17 @@
 // piece of data - val
 //reference to next node - next
 
+// insertion - push & shift O(1)
+//           - add O(n)
+// removal - unshift O(1)
+//         - pop & remove O(n)
+// search  - O(n)
+// access  - O(n)
+
+// SLLs are excellent alternative to arrays when insertion and deletion at the beginning are frequently required.
+
+// Arrays contain a built in index, whereas length lists do not.
+
 class Node {
   constructor(val) {
     this.val = val;
