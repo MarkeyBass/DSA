@@ -61,6 +61,26 @@ class SinglyLinkedList {
     return current;
   }
 
+  // pop() {
+  //   if (!this.head) return undefined;
+  //   let prev = null;
+  //   let curr = this.head;
+  //   while (curr.next) {
+  //     prev = curr;
+  //     curr = curr.next;
+  //   }
+  //   prev.next = null;
+  //   this.length--;
+  //   this.tail = prev;
+
+  //   if (this.length === 0) {
+  //     this.tail = null;
+  //     this.head = null;
+  //   }
+
+  //   return curr;
+  // }
+
   shift() {
     if (!this.head) return undefined;
     const currentHead = this.head;
@@ -245,11 +265,11 @@ class SinglyLinkedList {
   }
 }
 
-// // const first = new Node("Hi")
-// // first.next = new Node("there")
-// // first.next.next = new Node("how")
-// // first.next.next.next = new Node("are")
-// // first.next.next.next.next = new Node("you")
+// const first = new Node("Hi")
+// first.next = new Node("there")
+// first.next.next = new Node("how")
+// first.next.next.next = new Node("are")
+// first.next.next.next.next = new Node("you")
 
 // // console.log(first)
 
@@ -262,83 +282,83 @@ class SinglyLinkedList {
 
 // const emptyList = new SinglyLinkedList();
 
-// ############
-// # pop test #
-// ############
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.dir(list.pop(), { depth: null });
-// console.log("===============================");
-// console.dir(list, { depth: null });
+// // ############
+// // # pop test #
+// // ############
+// // console.dir(list, { depth: null });
+// // console.log("===============================");
+// // console.dir(list.pop(), { depth: null });
+// // console.log("===============================");
+// // console.dir(list, { depth: null });
 
-// console.log("===============================");
+// // console.log("===============================");
 
-// list.traverse();
+// // list.traverse();
 
-// console.log("===============================");
+// // console.log("===============================");
 
-// console.log(emptyList.pop());
+// // console.log(emptyList.pop());
 
-// ##############
-// # shift test #
-// ##############
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
+// // ##############
+// // # shift test #
+// // ##############
+// // console.dir(list, { depth: null });
+// // console.log("===============================");
+// // console.log(list.shift());
+// // console.log("===============================");
+// // console.dir(list, { depth: null });
+// // console.log("===============================");
+// // console.log(list.shift());
+// // console.log("===============================");
+// // console.dir(list, { depth: null });
+// // console.log("===============================");
+// // console.log(list.shift());
+// // console.log("===============================");
+// // console.dir(list, { depth: null });
+// // console.log("===============================");
+// // console.log(list.shift());
+// // console.log("===============================");
+// // console.dir(list, { depth: null });
+// // console.log("===============================");
+// // console.log(list.shift());
+// // console.log("===============================");
+// // console.dir(list, { depth: null });
 
-// ################
-// # unshift test #
-// ################
+// // ################
+// // # unshift test #
+// // ################
 
-// console.dir(list, { depth: null });
-// console.log("=======================");
-// console.dir(list.unshift("Ek!!!"), { depth: null });
+// // console.dir(list, { depth: null });
+// // console.log("=======================");
+// // console.dir(list.unshift("Ek!!!"), { depth: null });
 
-// ############
-// # get test #
-// ############
+// // ############
+// // # get test #
+// // ############
 
-// console.dir(list.get(-1), { depth: null });
-// console.dir(list.get(0), { depth: null });
-// console.dir(list.get(1), { depth: null });
-// console.dir(list.get(2), { depth: null });
-// console.dir(list.get(3), { depth: null });
-// console.dir(list.get(4), { depth: null });
+// // console.dir(list.get(-1), { depth: null });
+// // console.dir(list.get(0), { depth: null });
+// // console.dir(list.get(1), { depth: null });
+// // console.dir(list.get(2), { depth: null });
+// // console.dir(list.get(3), { depth: null });
+// // console.dir(list.get(4), { depth: null });
 
-// ############
-// # set test #
-// ############
+// // ############
+// // # set test #
+// // ############
 
-// console.dir(list.set(-1, "!"), { depth: null });
-// console.log(list.get(0));
-// console.log(list.set(0, "@"));
-// console.log(list.get(0));
-// console.log("================")
-// console.log(list.get(1));
-// console.log(list.set(1, "@"));
-// console.log(list.get(1));
+// // console.dir(list.set(-1, "!"), { depth: null });
+// // console.log(list.get(0));
+// // console.log(list.set(0, "@"));
+// // console.log(list.get(0));
+// // console.log("================")
+// // console.log(list.get(1));
+// // console.log(list.set(1, "@"));
+// // console.log(list.get(1));
 
-// ###############
-// # insert test #
-// ###############
+// // ###############
+// // # insert test #
+// // ###############
 
 // console.log(list.insert(-1, "bla"));
 // console.dir(list, { depth: null });
