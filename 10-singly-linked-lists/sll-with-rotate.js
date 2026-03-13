@@ -12,16 +12,6 @@
 
 // Arrays contain a built in index, whereas length lists do not.
 
-// ##############################
-// rotate Additional exercise
-//##############################
-
-// This function should rotate all the nodes in the list by some number passed in. For instance, if your list looks like 1 -> 2 -> 3 -> 4 -> 5 and you rotate by 2, the list should be modified to 3 -> 4 -> 5 -> 1 -> 2. The number passed in to rotate can be any integer.
-
-// Time Complexity: O(N), where N is the length of the list.
-
-// Space Complexity: O(1)
-
 class Node {
   constructor(val) {
     this.val = val;
@@ -34,6 +24,29 @@ class SinglyLinkedList {
     this.head = null;
     this.tail = null;
     this.length = 0;
+  }
+
+  // ##############################
+  // rotate Additional exercise
+  //##############################
+
+  // This function should rotate all the nodes in the list by some number passed in. For instance, if your list looks like 1 -> 2 -> 3 -> 4 -> 5 and you rotate by 2, the list should be modified to 3 -> 4 -> 5 -> 1 -> 2. The number passed in to rotate can be any integer.
+
+  // Time Complexity: O(N), where N is the length of the list.
+
+  // Space Complexity: O(1)
+
+  rotate(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    let curr = this.head;
+    for (let j = 0; j < index; j++) {
+      this.tail.next = curr;
+      this.head = curr.next;
+      curr.next = null;
+      this.tail = curr;
+      curr = this.head;
+    }
+    return this;
   }
 
   push(val) {
@@ -275,132 +288,42 @@ class SinglyLinkedList {
   }
 }
 
-// const first = new Node("Hi")
-// first.next = new Node("there")
-// first.next.next = new Node("how")
-// first.next.next.next = new Node("are")
-// first.next.next.next.next = new Node("you")
-
-// // console.log(first)
-
-// // push test
-const list = new SinglyLinkedList();
-list.push("HELLO");
-list.push("GOODBYE");
-list.push("Final");
-list.push("Really Final");
-
-// const emptyList = new SinglyLinkedList();
-
-// ############
-// # pop test #
-// ############
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.dir(list.pop(), { depth: null });
-// console.log("===============================");
-// console.dir(list, { depth: null });
-
-// console.log("===============================");
-
-// list.traverse();
-
-// console.log("===============================");
-
-// console.log(emptyList.pop());
-
-// ##############
-// # shift test #
-// ##############
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-// console.log("===============================");
-// console.log(list.shift());
-// console.log("===============================");
-// console.dir(list, { depth: null });
-
-// ################
-// # unshift test #
-// ################
-
-// console.dir(list, { depth: null });
-// console.log("=======================");
-// console.dir(list.unshift("Ek!!!"), { depth: null });
-
-// ############
-// # get test #
-// ############
-
-// console.dir(list.get(-1), { depth: null });
-// console.dir(list.get(0), { depth: null });
-// console.dir(list.get(1), { depth: null });
-// console.dir(list.get(2), { depth: null });
-// console.dir(list.get(3), { depth: null });
-// console.dir(list.get(4), { depth: null });
-
-// ############
-// # set test #
-// ############
-
-// console.dir(list.set(-1, "!"), { depth: null });
-// console.log(list.get(0));
-// console.log(list.set(0, "@"));
-// console.log(list.get(0));
-// console.log("================")
-// console.log(list.get(1));
-// console.log(list.set(1, "@"));
-// console.log(list.get(1));
-
-// ###############
-// # insert test #
-// ###############
-
-console.log(list.insert(-1, "bla"));
-console.dir(list, { depth: null });
-console.log(list.insert(0, "bla"));
-console.dir(list, { depth: null });
-console.log(list.insert(1, "bla"));
-console.dir(list, { depth: null });
-console.log(list.insert(list.length, "bla"));
-console.dir(list, { depth: null });
-console.log(list.insert(list.length + 3, "bla"));
-
-// ###############
-// # remove test #
-// ###############
-
-// console.log(list.remove(-1));
-// console.dir(list, { depth: null });
-// console.log(list.remove(0));
-// console.dir(list, { depth: null });
-// console.log(list.remove(100));
-// console.log(list.remove(2));
-// console.dir(list, { depth: null });
-
-// ##################
-// # remove reverse #
-// ##################
-
-// const list3 = new SinglyLinkedList();
-// list3.push(100).push(201).push(350).push(999);
-
-// list3.print();
-// console.dir(list3, { depth: null });
-// list3.reverse();
-// console.dir(list3, { depth: null });
-// list3.print();
+var singlyLinkedList = new SinglyLinkedList;
+singlyLinkedList.push(5).push(10).push(15).push(20).push(25);
+singlyLinkedList.head.val; // 5
+singlyLinkedList.tail.val; // 25;
+ 
+singlyLinkedList.rotate(3);
+singlyLinkedList.head.val; // 20
+singlyLinkedList.head.next.val; // 25
+singlyLinkedList.head.next.next.val; // 5
+singlyLinkedList.head.next.next.next.val; // 10
+singlyLinkedList.head.next.next.next.next.val; // 15
+singlyLinkedList.tail.val; // 15
+singlyLinkedList.tail.next; // null
+var singlyLinkedList = new SinglyLinkedList;
+singlyLinkedList.push(5).push(10).push(15).push(20).push(25);
+singlyLinkedList.head.val; // 5
+singlyLinkedList.tail.val; // 25;
+ 
+singlyLinkedList.rotate(-1);
+singlyLinkedList.head.val; // 25
+singlyLinkedList.head.next.val; // 5
+singlyLinkedList.head.next.next.val; // 10
+singlyLinkedList.head.next.next.next.val; // 15
+singlyLinkedList.head.next.next.next.next.val; // 20
+singlyLinkedList.tail.val; // 20
+singlyLinkedList.tail.next // null
+var singlyLinkedList = new SinglyLinkedList;
+singlyLinkedList.push(5).push(10).push(15).push(20).push(25);
+singlyLinkedList.head.val; // 5
+singlyLinkedList.tail.val; // 25;
+ 
+singlyLinkedList.rotate(1000);
+singlyLinkedList.head.val; // 5
+singlyLinkedList.head.next.val; // 10
+singlyLinkedList.head.next.next.val; // 15
+singlyLinkedList.head.next.next.next.val; // 20
+singlyLinkedList.head.next.next.next.next.val; // 25
+singlyLinkedList.tail.val; // 25
+singlyLinkedList.tail.next // null
