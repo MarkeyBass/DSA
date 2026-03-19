@@ -119,7 +119,7 @@ class SinglyLinkedList {
   // }
 
   get(index) {
-    if (index < 0 || index >= this.length) return undefined;
+    if (index < 0 || index >= this.length) return null;
     let counter = 0;
     let current = this.head;
     while (counter !== index) {
@@ -149,11 +149,11 @@ class SinglyLinkedList {
       return true;
     }
 
-    const foundNode = this.get(index - 1);
-
     const newNode = new Node(val);
-    newNode.next = foundNode.next;
-    foundNode.next = newNode;
+    const prevNode = this.get(index - 1);
+
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
     this.length++;
     return true;
   }
