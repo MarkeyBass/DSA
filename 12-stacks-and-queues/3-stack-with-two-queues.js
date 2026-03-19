@@ -72,13 +72,14 @@ class Stack {
   pop() {
     if (this.queueMain.size === 0) return null;
     const queueHelper = new Queue();
-    let item = this.queueMain.last;
-    let valueToReturn = item ? item.value : null;
+
     while (this.queueMain.size > 1) {
-      item = this.queueMain.dequeue();
+      const item = this.queueMain.dequeue();
       queueHelper.enqueue(item);
     }
+    const valueToReturn = this.queueMain.dequeue()
     this.queueMain = queueHelper;
+    
     return valueToReturn;
   }
 
