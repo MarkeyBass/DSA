@@ -5,30 +5,37 @@ class Node {
   }
 }
 
-// LIFO
-class Stack {
+// FIFO
+class Queue {
   constructor() {
     this.first = null;
     this.last = null;
     this.size = 0;
   }
 
-  push(val) {
+  // add to end of singly linked list
+  enqueue(val) {
     const newNode = new Node(val);
     if (this.size === 0) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode;
       this.last = newNode;
     }
-    newNode.next = this.first;
-    this.first = newNode;
+
     return ++this.size;
   }
 
-  pop() {
+  // removes from beggining of SLL
+  dequeue() {
     if (this.size === 0) return null;
 
     const deletedNode = this.first;
 
-    if (this.first === this.last) this.last = null;
+    if (this.first === this.last) {
+      this.last = null;
+    }
 
     this.first = this.first.next;
     this.size--;
@@ -40,15 +47,15 @@ class Stack {
 }
 
 function main() {
-  const stack = new Stack();
-  stack.push(1);
-  stack.push(2);
-  console.log(stack);
-  console.log(stack.pop());
-  console.log(stack);
-  console.log(stack.pop());
-  console.log(stack);
-  console.log(stack.pop());
+  const queue = new Queue();
+  queue.enqueue(1);
+  queue.enqueue(2);
+  console.log(queue);
+  console.log(queue.dequeue());
+  console.log(queue);
+  console.log(queue.dequeue());
+  console.log(queue);
+  console.log(queue.dequeue());
 }
 
 main();
