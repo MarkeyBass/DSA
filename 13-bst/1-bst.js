@@ -49,10 +49,127 @@ class BinarySearchTree {
   }
 
   contains(value) {
-    return this.search(value) !== undefined;
+    return this.find(value) !== undefined;
   }
 
+  remove(value) {
+    if (!this.root) return false;
+
+    let parent = null;
+    let current = this.root;
+
+    // 1) Find node to remove
+    while (current && current.value !== value) {
+      parent = current;
+      current = value < current.value ? current.left : current.right;
+    }
+    if (!current) return false; // not found
+
+    // Helper to reconnect parent -> newChild
+    const replaceChild = (parentNode, oldChild, newChild) => {
+      if (!parentNode) {
+        this.root = newChild; // removing root
+      } else if (parentNode.left === oldChild) {
+        parentNode.left = newChild;
+      } else {
+        parentNode.right = newChild;
+      }
+    };
+
+    // 2) Case A/B: 0 or 1 child
+    if (!current.left || !current.right) {
+      const child = current.left ? current.left : current.right; // may be null
+      replaceChild(parent, current, child);
+      return true;
+    }
+
+    // 3) Case C: 2 children
+    // Find successor: leftmost in right subtree
+    let succParent = current;
+    let succ = current.right;
+    while (succ.left) {
+      succParent = succ;
+      succ = succ.left;
+    }
+
+    // Copy successor value into current node
+    current.value = succ.value;
+
+    // Remove successor node (it has at most one child: right)
+    if (succParent.left === succ) {
+      succParent.left = succ.right;
+    } else {
+      succParent.right = succ.right;
+    }
+
+    return true;
+  }
+
+
+  findSecondLargest() {
+    if (!this.root || (!this.root.left && !this.root.right)) return undefined;
+
+    let parent = null;
+    let current = this.root;
+
+    // Walk to the largest node (rightmost).
+    while (current.right) {
+      parent = current;
+      current = current.right;
+    }
+
+    // If largest has a left subtree, second largest is max of that subtree.
+    if (current.left) {
+      current = current.left;
+      while (current.right) {
+        current = current.right;
+      }
+      return current.value;
+    }
+
+    // Otherwise, parent of largest is second largest.
+    return parent ? parent.value : undefined;
+  }
+
+  // Extra Challenge: Binary Search Tree - isBalanced Exercise
+  // Write a function on the BinarySearchTree class:
+
+  // isBalanced - returns true if the BST is balanced, otherwise returns false.
+
+  // A balanced tree is defined as a tree where the depth of all leaf nodes or nodes with single children differ by no more than one.
+
+  isBalanced() {
+    if (!this.root) return true;
+
+    let minDepth = Infinity;
+    let maxDepth = -Infinity;
+    const stack = [[this.root, 0]];
+
+    while (stack.length) {
+      const [node, depth] = stack.pop();
+      const hasLeft = node.left !== null;
+      const hasRight = node.right !== null;
+
+      // Challenge definition: track leaves and nodes with a single child.
+      if (!hasLeft || !hasRight) {
+        if (depth < minDepth) minDepth = depth;
+        if (depth > maxDepth) maxDepth = depth;
+        if (maxDepth - minDepth > 1) return false;
+      }
+
+      if (hasLeft) stack.push([node.left, depth + 1]);
+      if (hasRight) stack.push([node.right, depth + 1]);
+    }
+
+    return true;
+  }
 }
+
+
+
+
+
+
 
 // simple insertion
 // const tree = new BinarySearchTree();
@@ -74,4 +191,26 @@ tree.insert(16);
 tree.insert(5);
 tree.insert(13);
 console.dir(tree, { depth: null });
-console.log(tree.search(5));
+// console.log(tree.find(5));
+// console.log(tree.remove(10));
+// console.dir(tree, { depth: null });
+// console.log(tree.remove(5));
+// console.dir(tree, { depth: null });
+console.log(tree.findSecondLargest())
+
+
+
+var binarySearchTree = new BinarySearchTree();
+binarySearchTree.insert(15);
+binarySearchTree.insert(20);
+binarySearchTree.insert(10);
+binarySearchTree.insert(12);
+binarySearchTree.isBalanced(); // true
+ 
+var binarySearchTree2 = new BinarySearchTree();
+binarySearchTree2.insert(5);
+binarySearchTree2.isBalanced(); // true
+binarySearchTree2.insert(6);
+binarySearchTree2.isBalanced(); // true
+binarySearchTree2.insert(7);
+binarySearchTree2.isBalanced(); // false
