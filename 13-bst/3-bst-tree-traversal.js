@@ -52,7 +52,7 @@ class BinarySearchTree {
     return this.find(value) !== undefined;
   }
 
-  // Breath First Search (Breath before debth - horizontal before verticale)
+  // Breadth First Search (Breadth before depth - horizontal before verticale)
   // Prints the tree in a horizontal way
   bfs() {
     let node = this.root;
@@ -68,6 +68,38 @@ class BinarySearchTree {
       if (node.right) queue.push(node.right);
     }
 
+    return data;
+  }
+
+  // depth first search
+  // Pre-order: root, left, right
+  dfsPreOrder() {
+    const data = [];
+    let current = this.root;
+
+    function traverse(node) {
+      data.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(current);
+
+    return data;
+  }
+
+  // Post-order: left, right, root
+  dfsPostOrder() {
+    const data = [];
+    let current = this.root;
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      data.push(node.value);
+
+    }
+    traverse(current);
     return data;
   }
 }
@@ -94,4 +126,6 @@ tree.insert(3.5);
 tree.insert(11);
 tree.insert(13);
 console.dir(tree, { depth: null });
-console.log(tree.bfs());
+console.log(tree.bfs()); // [10,  3, 16,  2,   5, 11, 17,  4, 13, 3.5]
+console.log(tree.dfsPreOrder()); // [10,  3,  2,  5,  4, 3.5, 16, 11, 13, 17]
+console.log(tree.dfsPostOrder()); //[ 2, 3.5,  4,  5,  3, 13,  11, 17, 16, 10]

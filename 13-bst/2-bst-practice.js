@@ -121,9 +121,19 @@ class BinarySearchTree {
 }
 
 const tree = new BinarySearchTree();
-//     10
-//  5     13
-//2  7  11  16
+
+
+
+// // After inserts below (matches console.dir structure):
+//            10
+//          /    \
+//         3      16
+//        / \    /  \
+//       2   5  11  17
+//          /    \
+//         4      13
+//        /
+//      3.5
 tree.insert(10);
 tree.insert(3);
 tree.insert(2);
