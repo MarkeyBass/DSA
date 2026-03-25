@@ -133,7 +133,9 @@ tree.insert(8);
 tree.insert(20);
 
 console.dir(tree, { depth: null });
-console.log(tree.bfs()); // [ 10, 6, 15, 3, 8, 20 ]
+console.log(tree.bfs()); // [ 10, 6, 15, 3, 8, 20 ] - if we store it inside db this way -> easy to recreate from that serialized structure - same as the insert order
+// flatten it out so you can store it in a file or in a database or something and then recreate it from that serialized structure.
+
 console.log(tree.dfsPreOrder()); // [ 10, 6, 3, 8, 15, 20 ]
 console.log(tree.dfsPostOrder()); // [ 3, 8, 6, 20, 15, 10 ]
 console.log(tree.dfsInOrder()); // [ 3, 6, 8, 10, 15, 20 ]
