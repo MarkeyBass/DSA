@@ -97,35 +97,77 @@ class BinarySearchTree {
       if (node.left) traverse(node.left);
       if (node.right) traverse(node.right);
       data.push(node.value);
+    }
+    traverse(current);
+    return data;
+  }
 
+  dfsInOrder() {
+    const data = [];
+    let current = this.root;
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      data.push(node.value);
+      if (node.right) traverse(node.right);
     }
     traverse(current);
     return data;
   }
 }
 
+// Simple test
 const tree = new BinarySearchTree();
 // After inserts below (matches console.dir structure):
 //            10
 //          /    \
-//         3      16
-//        / \    /  \
-//       2   5  11  17
-//          /    \
-//         4      13
-//        /
-//      3.5
+//         6      15
+//        / \       \
+//       3   8      20
+
 tree.insert(10);
+tree.insert(6);
+tree.insert(15);
 tree.insert(3);
-tree.insert(2);
-tree.insert(16);
-tree.insert(17);
-tree.insert(5);
-tree.insert(4);
-tree.insert(3.5);
-tree.insert(11);
-tree.insert(13);
+tree.insert(8);
+tree.insert(20);
+
 console.dir(tree, { depth: null });
-console.log(tree.bfs()); // [10,  3, 16,  2,   5, 11, 17,  4, 13, 3.5]
-console.log(tree.dfsPreOrder()); // [10,  3,  2,  5,  4, 3.5, 16, 11, 13, 17]
-console.log(tree.dfsPostOrder()); //[ 2, 3.5,  4,  5,  3, 13,  11, 17, 16, 10]
+console.log(tree.bfs()); // [ 10, 6, 15, 3, 8, 20 ]
+console.log(tree.dfsPreOrder()); // [ 10, 6, 3, 8, 15, 20 ]
+console.log(tree.dfsPostOrder()); // [ 3, 8, 6, 20, 15, 10 ]
+console.log(tree.dfsInOrder()); // [ 3, 6, 8, 10, 15, 20 ]
+
+
+
+// // Complex test
+// const tree = new BinarySearchTree();
+// // After inserts below (matches console.dir structure):
+// //            10
+// //          /    \
+// //         3      16
+// //        / \    /  \
+// //       2   5  11  17
+// //          /    \
+// //         4      13
+// //        /
+// //      3.5
+// tree.insert(10);
+// tree.insert(3);
+// tree.insert(2);
+// tree.insert(16);
+// tree.insert(17);
+// tree.insert(5);
+// tree.insert(4);
+// tree.insert(3.5);
+// tree.insert(11);
+// tree.insert(13);
+// console.dir(tree, { depth: null });
+// console.log(tree.bfs()); // [10,  3, 16,  2,   5, 11, 17,  4, 13, 3.5]
+// console.log(tree.dfsPreOrder()); // [10,  3,  2,  5,  4, 3.5, 16, 11, 13, 17]
+// console.log(tree.dfsPostOrder()); //[ 2, 3.5,  4,  5,  3, 13,  11, 17, 16, 10]
+// console.log(tree.dfsInOrder()); //[    2,  3, 3.5,  4,  5, 10, 11,  13, 16, 17]
+
+
+
+
