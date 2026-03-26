@@ -1,24 +1,9 @@
-class MaxBinaryHeap {
+class MinBinaryHeap {
   constructor() {
     this.values = [];
   }
 
-  // insert(value) {
-  //   // push the value to the end and bubble it up till it finds it's correct place (swap the values till value is in the correct spot)
-  //   this.values.push(value);
-
-  //   let elementIdx = this.values.length - 1;
-  //   let parentIdx = Math.floor((elementIdx - 1) / 2);
-  //   while (this.values[elementIdx] > this.values[parentIdx] && parentIdx >= 0) {
-  //     [this.values[elementIdx], this.values[parentIdx]] = [this.values[parentIdx], this.values[elementIdx]];
-  //     elementIdx = parentIdx;
-  //     parentIdx = Math.floor((elementIdx - 1) / 2);
-  //   }
-  //   return this;
-  // }
-
   insert(value) {
-    // push the value to the end and bubble it up till it finds it's correct place (swap the values till value is in the correct spot)
     this.values.push(value);
     this.bubbleUp();
     return this;
@@ -93,23 +78,23 @@ class MaxBinaryHeap {
 const mbh = new MaxBinaryHeap();
 mbh.insert(41).insert(39).insert(33).insert(18).insert(27).insert(12);
 console.log(mbh);
-// mbh.insert(55);
+mbh.insert(55);
+console.log(mbh);
+mbh.insert(49);
+console.log(mbh);
+// mbh.extractMax();
 // console.log(mbh);
-// mbh.insert(49);
+// mbh.extractMax();
 // console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
