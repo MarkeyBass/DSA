@@ -44,3 +44,30 @@ let rightChild = parent * 2 + 2
 // floored
 
 // parent = Math.floor((child - 1) / 2)
+
+
+
+
+// Big O of Binary Heaps
+// Insertion - O(log N)
+// Removal - O(log N)
+// Search - O(N)
+
+
+
+
+// So another way of putting that is every time we double the number of nodes, every new full, complete
+
+// layer, we are only increasing the time that it takes by one.
+
+// So when we get to 64 nodes, we're talking about six operations and hopefully you can see why it'd be
+
+// the same for removal because we insert at the end, we remove from the beginning, we swap something
+
+// to be the new root and then we have to compare.
+
+// And if it has to sift all the way back down, the max number of comparisons is going to be the same
+
+// as we saw here.
+
+// It's log n.

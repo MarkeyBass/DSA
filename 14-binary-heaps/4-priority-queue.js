@@ -1,3 +1,14 @@
+// OUR PRIORITY QUEUE
+// • Write a Min Binary Heap - lower number means
+// higher priority.
+// • Each Node has a val and a priority. Use the
+// priority to build the heap.
+// • Enqueue method accepts a value and priority,
+// makes a new node, and puts it in the right spot
+// based off of its priority.
+// • Dequeue method removes root element,
+// returns it, and rearranges heap using priority.
+
 class Node {
   constructor(value, priority) {
     this.value = value;
@@ -10,8 +21,8 @@ class PriorityQueue {
     this.values = [];
   }
 
-  enqueue(node) {
-    this.values.push(node);
+  enqueue(value, priority) {
+    this.values.push(new Node(value, priority));
     this.bubbleUp();
     return this;
   }
@@ -83,7 +94,7 @@ class PriorityQueue {
 }
 
 const mbh = new PriorityQueue();
-mbh.enqueue(new Node("homework",41)).enqueue(new Node("project",39)).enqueue(new Node("exam",33)).enqueue(new Node("interview",18)).enqueue(new Node("presentation",27)).enqueue(new Node("meeting",12));
+mbh.enqueue("homework",41).enqueue("project",39).enqueue("exam",33).enqueue("interview",18).enqueue("presentation",27).enqueue("meeting",12);
 console.log(mbh);
 mbh.enqueue(new Node("lunch",55));
 console.log(mbh);
