@@ -40,25 +40,20 @@ class MaxBinaryHeap {
   extractMax() {
     if(this.values.length === 1) return this.values.pop()
     if(this.values.length === 0) return null
+
     let lastIndex = this.values.length - 1;
     [this.values[0], this.values[lastIndex]] = [this.values[lastIndex], this.values[0]];
-    const max = this.values.pop();
+    const maxVal = this.values.pop();
     this.bubbleDown();
 
-
-    // const max = this.values[0];
-    // const end = this.values.pop();
-    // this.values[0] = end;
-    // this.bubbleDown();
-
-    return max;
+    return maxVal;
   }
 
   // sinkDown
   bubbleDown() {
     let idx = 0;
     const length = this.values.length;
-    const parent = this.values[idx];
+    const element = this.values[idx];
     while (true) {
       let leftChildIdx = 2 * idx + 1;
       let rightChildIdx = 2 * idx + 2;
@@ -68,7 +63,7 @@ class MaxBinaryHeap {
       // swaping with left child
       if (leftChildIdx < length) {
         leftChild = this.values[leftChildIdx];
-        if (leftChild > parent) {
+        if (leftChild > element) {
           swapIdx = leftChildIdx;
         }
       }
@@ -76,7 +71,7 @@ class MaxBinaryHeap {
       if (rightChildIdx < length) {
         rightChild = this.values[rightChildIdx];
         if (
-          (swapIdx === null && rightChild > parent) ||
+          (swapIdx === null && rightChild > element) ||
           (swapIdx !== null && rightChild > leftChild)
         ) {
           swapIdx = rightChildIdx;
@@ -96,6 +91,8 @@ console.log(mbh);
 mbh.insert(55);
 console.log(mbh);
 mbh.insert(49);
+console.log(mbh);
+mbh.insert(5);
 console.log(mbh);
 mbh.extractMax();
 console.log(mbh);

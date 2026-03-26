@@ -22,12 +22,12 @@ class MinBinaryHeap {
     }
   }
 
-  extractMax() {
+  extractMin() {
     if(this.values.length === 1) return this.values.pop()
     if(this.values.length === 0) return null
     let lastIndex = this.values.length - 1;
     [this.values[0], this.values[lastIndex]] = [this.values[lastIndex], this.values[0]];
-    const max = this.values.pop();
+    const minVal = this.values.pop();
     this.bubbleDown();
 
 
@@ -36,14 +36,14 @@ class MinBinaryHeap {
     // this.values[0] = end;
     // this.bubbleDown();
 
-    return max;
+    return minVal;
   }
 
   // sinkDown
   bubbleDown() {
     let idx = 0;
     const length = this.values.length;
-    const parent = this.values[idx];
+    const element = this.values[idx];
     while (true) {
       let leftChildIdx = 2 * idx + 1;
       let rightChildIdx = 2 * idx + 2;
@@ -53,7 +53,7 @@ class MinBinaryHeap {
       // swaping with left child
       if (leftChildIdx < length) {
         leftChild = this.values[leftChildIdx];
-        if (leftChild > parent) {
+        if (leftChild < element) {
           swapIdx = leftChildIdx;
         }
       }
@@ -61,8 +61,8 @@ class MinBinaryHeap {
       if (rightChildIdx < length) {
         rightChild = this.values[rightChildIdx];
         if (
-          (swapIdx === null && rightChild > parent) ||
-          (swapIdx !== null && rightChild > leftChild)
+          (swapIdx === null && rightChild < element) ||
+          (swapIdx !== null && rightChild < leftChild)
         ) {
           swapIdx = rightChildIdx;
         }
@@ -75,26 +75,26 @@ class MinBinaryHeap {
   }
 }
 
-const mbh = new MaxBinaryHeap();
+const mbh = new MinBinaryHeap();
 mbh.insert(41).insert(39).insert(33).insert(18).insert(27).insert(12);
 console.log(mbh);
 mbh.insert(55);
 console.log(mbh);
 mbh.insert(49);
 console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
-// mbh.extractMax();
-// console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
+mbh.extractMin();
+console.log(mbh);
