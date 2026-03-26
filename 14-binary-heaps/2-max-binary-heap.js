@@ -86,27 +86,29 @@ class MaxBinaryHeap {
 }
 
 const mbh = new MaxBinaryHeap();
-mbh.insert(41).insert(39).insert(33).insert(18).insert(27).insert(12);
+mbh.insert(41).insert(33).insert(39).insert(18).insert(27).insert(12);
 console.log(mbh);
-mbh.insert(55);
-console.log(mbh);
-mbh.insert(49);
-console.log(mbh);
-mbh.insert(5);
-console.log(mbh);
+// mbh.insert(55);
+// console.log(mbh);
+// mbh.insert(49);
+// console.log(mbh);
+// mbh.insert(5);
+// console.log(mbh);
+console.log("=====================")
 mbh.extractMax();
+console.log("=====================")
 console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
-mbh.extractMax();
-console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
+// mbh.extractMax();
+// console.log(mbh);
