@@ -26,9 +26,10 @@ class HashTable {
       this.keyMap[index] = [[key, value]];
     } else {
       let found = false;
-      for (let i = 0; i < bucket.length; i++) {
-        if (bucket[i][0] === key) {
-          bucket[i][1] = value;
+
+      for (let element of bucket) {
+        if (element[0] === key) {
+          element[1] = value;
           found = true;
           break;
         }
@@ -49,6 +50,33 @@ class HashTable {
     }
     return undefined;
   }
+
+  get keys() {
+    const keys = [];
+
+    const KEY_INDEX = 0;
+    for (let bucket of this.keyMap) {
+      if (bucket) {
+        for (let element of bucket) {
+          keys.push(element[KEY_INDEX]);
+        }
+      }
+    }
+    return keys;
+  }
+
+  get values() {
+    const values = new Set();
+    const VALUE_INDEX = 1;
+    for (let bucket of this.keyMap) {
+      if (bucket) {
+        for (let element of bucket) {
+          values.add(element[VALUE_INDEX]);
+        }
+      }
+    }
+    return [...values];
+  }
 }
 
 function main() {
@@ -56,8 +84,13 @@ function main() {
   ht.set("hello", "world");
   ht.set("pizza", "yum");
   ht.set("hello", "world");
+  ht.set("zeb", "deb");
+  ht.set("cadur", "asur");
   console.log(ht.get("hello"));
   console.log(ht.get("hello2"));
+
+  console.log(ht.keys);
+  console.log(ht.values);
 }
 
 main();
