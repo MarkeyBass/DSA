@@ -83,7 +83,7 @@ class Graph {
     if (!this.adjacencyList[start]) return [];
     if (this.adjacencyList[start].length === 0) return [start];
     const stack = [start];
-    const visited = {[start]: true};
+    const visited = { [start]: true };
     const results = [];
     let currVertex;
 
@@ -97,6 +97,26 @@ class Graph {
         if (visited[neighbor] === undefined) {
           visited[neighbor] = true;
           stack.push(neighbor);
+        }
+      }
+    }
+    return results;
+  }
+
+  bfs(start) {
+    const queue = [start];
+    const visited = { [start]: true };
+    const results = [];
+    let currVertex;
+
+    while (queue.length > 0) {
+      currVertex = queue.shift();
+      results.push(currVertex);
+      const neighbors = this.adjacencyList[currVertex];
+      for (let neighbor of neighbors) {
+        if (visited[neighbor] === undefined) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
         }
       }
     }
@@ -130,6 +150,7 @@ console.log(g.dfsRecursive("E"));
 console.log("dfsRecursive", g.dfsRecursive("F"));
 console.log("dfsRecursiveColt", g.dfsRecursiveColt("F"));
 console.log("dfsIterative", g.dfsIterative("F"));
+console.log("bfs", g.bfs("F"));
 
 /*
  * Slide example — undirected graph (A–F):
