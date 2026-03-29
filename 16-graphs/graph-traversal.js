@@ -9,7 +9,7 @@ class Graph {
     }
   }
 
-  addVertext(vertex) {
+  addVertex(vertex) {
     if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
   }
 
@@ -36,18 +36,57 @@ class Graph {
 
     delete this.adjacencyList[v];
   }
+
+  // depth first traversal of a graph recursive function:
+  dfsRecursive(key) {
+    const results = [];
+    const visited = {};
+    const dfs = (vertex) => {
+      for (let adjacened of this.adjacencyList[vertex]) {
+        if (!visited[adjacened]) {
+          visited[adjacened] = true;
+          results.push(adjacened);
+          dfs(adjacened);
+        }
+      }
+    }
+    dfs(key);
+    return results;
+  }
 }
 
 const g = new Graph();
 
-g.addVertext("Tokyo");
-g.addVertext("San Francisco");
-g.addVertext("Dalas");
+// g.addVertex("Tokyo");
+// g.addVertex("San Francisco");
+// g.addVertex("Dalas");
 
-g.addEdge("Tokyo", "Dalas");
-g.addEdge("Tokyo", "San Francisco");
+// g.addEdge("Tokyo", "Dalas");
+// g.addEdge("Tokyo", "San Francisco");
+
+// console.log(g);
+// // g.removeEdge("Tokyo", "San Francisco");
+// // g.removeVertex("Dalas");
+// // console.log(g);
+
+// console.log(g.dfsRecursive("Tokyo"))
+
+
+
+g.addVertex("A")
+g.addVertex("B")
+g.addVertex("C")
+g.addVertex("D")
+g.addVertex("E")
+g.addVertex("F")
+g.addEdge("A", "B")
+g.addEdge("A", "C")
+g.addEdge("B","D")
+g.addEdge("C","E")
+g.addEdge("D","E")
+g.addEdge("D","F")
+g.addEdge ("E", "F")
 
 console.log(g);
-// g.removeEdge("Tokyo", "San Francisco");
-g.removeVertex("Dalas");
-console.log(g);
+
+console.log(g.dfsRecursive("A"))

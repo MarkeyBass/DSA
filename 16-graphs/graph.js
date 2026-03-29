@@ -9,7 +9,7 @@ class Graph {
     }
   }
 
-  addVertext(vertex) {
+  addVertex(vertex) {
     if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
   }
 
@@ -46,9 +46,9 @@ class Graph {
 
 const g = new Graph();
 
-g.addVertext("Tokyo");
-g.addVertext("San Francisco");
-g.addVertext("Dalas");
+g.addVertex("Tokyo");
+g.addVertex("San Francisco");
+g.addVertex("Dalas");
 
 g.addEdge("Tokyo", "Dalas");
 g.addEdge("Tokyo", "San Francisco");
