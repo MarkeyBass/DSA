@@ -39,15 +39,18 @@ class Graph {
 
   // depth first traversal of a graph recursive function:
   dfsRecursive(key) {
-    if(!this.adjacencyList[key] || this.adjacencyList[key].length === 0) return []
+    if(!this.adjacencyList[key]) return []
+    if(this.adjacencyList[key].length === 0) return [key]
     const results = [];
     const visited = {};
+    results.push(key)
+    visited[key] = true;
     const dfs = (vertex) => {
-      for (let adjacened of this.adjacencyList[vertex]) {
-        if (!visited[adjacened]) {
-          visited[adjacened] = true;
-          results.push(adjacened);
-          dfs(adjacened);
+      for (let adjacent of this.adjacencyList[vertex]) {
+        if (!visited[adjacent]) {
+          visited[adjacent] = true;
+          results.push(adjacent);
+          dfs(adjacent);
         }
       }
     }
@@ -57,21 +60,6 @@ class Graph {
 }
 
 const g = new Graph();
-
-// g.addVertex("Tokyo");
-// g.addVertex("San Francisco");
-// g.addVertex("Dalas");
-
-// g.addEdge("Tokyo", "Dalas");
-// g.addEdge("Tokyo", "San Francisco");
-
-// console.log(g);
-// // g.removeEdge("Tokyo", "San Francisco");
-// // g.removeVertex("Dalas");
-// // console.log(g);
-
-// console.log(g.dfsRecursive("Tokyo"))
-
 
 
 g.addVertex("A")
@@ -96,3 +84,39 @@ console.log(g.dfsRecursive("ZEB"))
 console.log(g.dfsRecursive("A"))
 console.log(g.dfsRecursive("E"))
 console.log(g.dfsRecursive("F"))
+
+
+/*
+ * Slide example — undirected graph (A–F):
+ *
+ *        A
+ *       / \
+ *      B   C
+ *      |   |
+ *      D---E
+ *       \ /
+ *        F
+ *
+ * Adjacency list:
+ *   A: B, C     B: A, D     C: A, E
+ *   D: B, E, F  E: C, D, F  F: D, E
+ *
+ * {
+ *   "A": ["B", "C"],
+ *   "B": ["A", "D"],
+ *   "C": ["A", "E"],
+ *   "D": ["B", "E", "F"],
+ *   "E": ["C", "D", "F"],
+ *   "F": ["D", "E"]
+ * }
+ *
+ * DFS visited (order of discovery when starting at A): A → B → D → E → C → F
+ * {
+ *   "A": true,
+ *   "B": true,
+ *   "D": true,
+ *   "E": true,
+ *   "C": true,
+ *   "F": true
+ * }
+ */
