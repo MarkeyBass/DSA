@@ -82,21 +82,20 @@ class Graph {
   dfsIterative(start) {
     if (!this.adjacencyList[start]) return [];
     if (this.adjacencyList[start].length === 0) return [start];
-    const stack = [];
+    const stack = [start];
+    const visited = {[start]: true};
     const results = [];
-    const visited = {};
-
-    stack.push(start);
+    let currVertex;
 
     while (stack.length !== 0) {
-      const vertex = stack.pop();
-      if (visited[vertex] === undefined) {
-        visited[vertex] = true;
-        results.push(vertex);
-      }
-      const neighbors = this.adjacencyList[vertex];
+      currVertex = stack.pop();
+
+      results.push(currVertex);
+
+      const neighbors = this.adjacencyList[currVertex];
       for (let neighbor of neighbors) {
         if (visited[neighbor] === undefined) {
+          visited[neighbor] = true;
           stack.push(neighbor);
         }
       }
