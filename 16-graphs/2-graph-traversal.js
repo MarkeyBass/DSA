@@ -78,6 +78,31 @@ class Graph {
 
     return results;
   }
+
+  dfsIterative(start) {
+    if (!this.adjacencyList[start]) return [];
+    if (this.adjacencyList[start].length === 0) return [start];
+    const stack = [];
+    const results = [];
+    const visited = {};
+
+    stack.push(start);
+
+    while (stack.length !== 0) {
+      const vertex = stack.pop();
+      if (visited[vertex] === undefined) {
+        visited[vertex] = true;
+        results.push(vertex);
+      }
+      const neighbors = this.adjacencyList[vertex];
+      for (let neighbor of neighbors) {
+        if (visited[neighbor] === undefined) {
+          stack.push(neighbor);
+        }
+      }
+    }
+    return results;
+  }
 }
 
 const g = new Graph();
@@ -103,8 +128,9 @@ console.log(g.dfsRecursive("AB"));
 console.log(g.dfsRecursive("ZEB"));
 console.log(g.dfsRecursive("A"));
 console.log(g.dfsRecursive("E"));
-console.log(g.dfsRecursive("F"));
-console.log(g.dfsRecursiveColt("F"));
+console.log("dfsRecursive", g.dfsRecursive("F"));
+console.log("dfsRecursiveColt", g.dfsRecursiveColt("F"));
+console.log("dfsIterative", g.dfsIterative("F"));
 
 /*
  * Slide example — undirected graph (A–F):
