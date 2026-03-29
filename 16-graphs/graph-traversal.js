@@ -39,6 +39,7 @@ class Graph {
 
   // depth first traversal of a graph recursive function:
   dfsRecursive(key) {
+    if(!this.adjacencyList[key] || this.adjacencyList[key].length === 0) return []
     const results = [];
     const visited = {};
     const dfs = (vertex) => {
@@ -79,6 +80,7 @@ g.addVertex("C")
 g.addVertex("D")
 g.addVertex("E")
 g.addVertex("F")
+g.addVertex("ZEB")
 g.addEdge("A", "B")
 g.addEdge("A", "C")
 g.addEdge("B","D")
@@ -89,4 +91,8 @@ g.addEdge ("E", "F")
 
 console.log(g);
 
+console.log(g.dfsRecursive("AB"))
+console.log(g.dfsRecursive("ZEB"))
 console.log(g.dfsRecursive("A"))
+console.log(g.dfsRecursive("E"))
+console.log(g.dfsRecursive("F"))
