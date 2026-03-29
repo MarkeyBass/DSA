@@ -38,13 +38,13 @@ class Graph {
   }
 
   // depth first traversal of a graph recursive function:
-  dfsRecursive(key) {
-    if(!this.adjacencyList[key]) return []
-    if(this.adjacencyList[key].length === 0) return [key]
+  dfsRecursive(start) {
+    if (!this.adjacencyList[start]) return [];
+    if (this.adjacencyList[start].length === 0) return [start];
     const results = [];
     const visited = {};
-    results.push(key)
-    visited[key] = true;
+    results.push(start);
+    visited[start] = true;
     const dfs = (vertex) => {
       for (let adjacent of this.adjacencyList[vertex]) {
         if (!visited[adjacent]) {
@@ -53,38 +53,58 @@ class Graph {
           dfs(adjacent);
         }
       }
-    }
-    dfs(key);
+    };
+    dfs(start);
+    return results;
+  }
+
+  dfsRecursiveColt(start) {
+    if (!this.adjacencyList[start]) return [];
+    if (this.adjacencyList[start].length === 0) return [start];
+    const results = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    (function dfs(vertex) {
+      if (!adjacencyList[vertex]) return null;
+      visited[vertex] = true;
+      results.push(vertex);
+      adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          return dfs(neighbor);
+        }
+      });
+    })(start);
+
     return results;
   }
 }
 
 const g = new Graph();
 
-
-g.addVertex("A")
-g.addVertex("B")
-g.addVertex("C")
-g.addVertex("D")
-g.addVertex("E")
-g.addVertex("F")
-g.addVertex("ZEB")
-g.addEdge("A", "B")
-g.addEdge("A", "C")
-g.addEdge("B","D")
-g.addEdge("C","E")
-g.addEdge("D","E")
-g.addEdge("D","F")
-g.addEdge ("E", "F")
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+g.addVertex("ZEB");
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
 
 console.log(g);
 
-console.log(g.dfsRecursive("AB"))
-console.log(g.dfsRecursive("ZEB"))
-console.log(g.dfsRecursive("A"))
-console.log(g.dfsRecursive("E"))
-console.log(g.dfsRecursive("F"))
-
+console.log(g.dfsRecursive("AB"));
+console.log(g.dfsRecursive("ZEB"));
+console.log(g.dfsRecursive("A"));
+console.log(g.dfsRecursive("E"));
+console.log(g.dfsRecursive("F"));
+console.log(g.dfsRecursiveColt("F"));
 
 /*
  * Slide example — undirected graph (A–F):
