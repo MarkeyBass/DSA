@@ -89,9 +89,7 @@ class Graph {
 
     while (stack.length !== 0) {
       currVertex = stack.pop();
-
       results.push(currVertex);
-
       const neighbors = this.adjacencyList[currVertex];
       for (let neighbor of neighbors) {
         if (visited[neighbor] === undefined) {
@@ -103,7 +101,23 @@ class Graph {
     return results;
   }
 
+    /**
+   *
+   *        A
+   *       / \
+   *      B   C
+   *      |   |
+   *      D---E
+   *       \ /
+   *        F
+   *
+   * STACK: [  ]
+   * RESULTS: [A, C, E, F, D, B,]
+   */
+
   bfs(start) {
+    if (!this.adjacencyList[start]) return [];
+    if (this.adjacencyList[start].length === 0) return [start];
     const queue = [start];
     const visited = { [start]: true };
     const results = [];
