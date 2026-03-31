@@ -64,26 +64,40 @@ const threeSum = function (nums) {
     const value = entries[i][1] * 1;
     // case duplicate
     if (value > 1) {
-      let x = -1 * (2 * key);
+      let x = key === 0 ? 0 : -1 * (2 * key);
       if (obj[x]) results.push([key, key, x]);
     }
   }
 
   const keys = Object.keys(obj);
+  const existingResults = new Set();
+  // case non duplicate values
   for (let i = 0; i < keys.length; i++) {
-    // case non duplicate
     for (let j = i + 1; j < keys.length; j++) {
       const keyI = Number(keys[i]);
       const keyJ = Number(keys[j]);
-      let x = -1 * (keys[i] + keys[j]);
-      if (obj[x] && x != keys[i] && x != keys[j]) {
-        results.push([keys[i], keys[j], x]);
+      let x = -1 * (keyI + keyJ);
+      if (obj[x] && x !== keyI && x !== keyJ && keyI !== keyJ) {
+        const arrToAdd = [keyI, keyJ, x].sort((a, b) => a - b);
+        const stringArr = arrToAdd.toString();
+
+        if (!existingResults.has(stringArr)) {
+          results.push(arrToAdd);
+          existingResults.add(stringArr);
+        }
       }
     }
   }
 
+  // edge cases
+  if (results.length === 0) return [];
+  
   return results;
 };
 
 const results = threeSum([-1, 0, 1, 2, -1, -4]);
-console.log(results);
+console.log("results", results);
+const results2 = threeSum([-1, 0, 1, 2, -1, -4, 0, 0]);
+console.log("results2", results2);
+const results3 = threeSum([0, 0, 0]);
+console.log("results3", results3);
