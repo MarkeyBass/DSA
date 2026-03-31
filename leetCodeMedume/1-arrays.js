@@ -109,3 +109,7 @@ const results4 = threeSum([-2,0,1,1,2]);
 console.log("results4", results4);
 const results5 = threeSum([]);
 console.log("results5", results5);
+
+
+
+// First leetcode - took too long - I managed to do it with O(n^2) instead of the brut force O(n^3) which was good. I did not manage to take in account all the edge cases - used AI for the final edge case fix (small but still used AI). Took me 2.5 - 3 hours instead of one hour
