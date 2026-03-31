@@ -33,17 +33,23 @@
  * @return {number[][]}
  */
 const threeSum = function (nums) {
-  //   const results = []
-  //   for(let i = 0; i < nums.length; i+=3) {
-  //       for(let j = i+1; j < nums.length; j++) {
-  //           for(let k = j+1; k < nums.length; k++) {
-  //               if(nums[i] + nums[j] + nums[k] === 0) {
-  //                   results.push([nums[i], nums[j], nums[k]])
-  //               }
-  //           }
-  //       }
-  //   }
-  //   return results;
+    // const results = []
+    // const existingResults = new Set();
+    // for (let i = 0; i < nums.length; i++) {
+    //     for(let j = i+1; j < nums.length; j++) {
+    //         for(let k = j+1; k < nums.length; k++) {
+    //             if(nums[i] + nums[j] + nums[k] === 0) {
+    //                 const arrToAdd = [nums[i], nums[j], nums[k]].sort((a, b) => a - b);
+    //                 const stringArr = arrToAdd.toString();
+    //                 if (!existingResults.has(stringArr)) {
+    //                     results.push(arrToAdd);
+    //                     existingResults.add(stringArr);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    // return results;
 
   //   { '0': 1, '1': 1, '2': 1, '-1': 2, '-4': 1 }
 
@@ -59,13 +65,14 @@ const threeSum = function (nums) {
   }
 
   const entries = Object.entries(obj);
+  // case duplicate values
   for (let i = 0; i < entries.length; i++) {
-    const key = entries[i][0] * 1;
-    const value = entries[i][1] * 1;
-    // case duplicate
-    if (value > 1) {
-      let x = key === 0 ? 0 : -1 * (2 * key);
-      if (obj[x]) results.push([key, key, x]);
+    const key = Number(entries[i][0]);
+    const value = Number(entries[i][1]);
+    if(value >=3 && key === 0) results.push([0, 0, 0]);
+    if(value > 1 && key !==0) {
+      const x = 0 - 2 * key
+      if(obj[x]) results.push([key, key, x]);
     }
   }
 
@@ -88,9 +95,6 @@ const threeSum = function (nums) {
       }
     }
   }
-
-  // edge cases
-  if (results.length === 0) return [];
   
   return results;
 };
@@ -101,3 +105,7 @@ const results2 = threeSum([-1, 0, 1, 2, -1, -4, 0, 0]);
 console.log("results2", results2);
 const results3 = threeSum([0, 0, 0]);
 console.log("results3", results3);
+const results4 = threeSum([-2,0,1,1,2]);
+console.log("results4", results4);
+const results5 = threeSum([]);
+console.log("results5", results5);
