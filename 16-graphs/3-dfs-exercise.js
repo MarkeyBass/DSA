@@ -34,6 +34,26 @@ class Graph {
     }
     return results;
   }
+
+  depthFirstSearchRecursive(start) {
+    const visited = {};
+    const results = [];
+
+    const adjacencyList = this.adjacencyList;
+
+    (function bfs(vertex) {
+      results.push(vertex);
+      visited[vertex] = true;
+      const neighbors = adjacencyList[vertex];
+      for (let n of neighbors) {
+        if (!visited[n]) {
+          bfs(n);
+        }
+      }
+    })(start);
+
+    return results;
+  }
 }
 
 var graph = new Graph();
@@ -71,6 +91,7 @@ graph.addEdge("V", "W");
 graph.addEdge("R", "T");
 graph.addEdge("W", "T");
 
+console.log(graph.depthFirstSearchRecursive("S"));
 console.log(graph.depthFirstSearch("S"));
 
 /**
