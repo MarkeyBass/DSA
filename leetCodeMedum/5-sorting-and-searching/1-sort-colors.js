@@ -41,17 +41,17 @@ var sortColors = function (nums) {
     }
   }
 
-  console.log(obj)
 
-  for (let key in obj) {
-    // console.log(key)
-    for (let i = 0; i < obj[key]; i++) {
-      results.push(key);
+
+  let counter = 0;
+  ["0", "1", "2"].forEach((el) => {
+    for(let i = counter; i < counter + obj[el]; i++) {
+      nums[i] = el*1
     }
-  }
-  console.log(nums);
-  console.log(results);
-  return results;
+    counter += obj[el]
+  })
+
+  return nums;
 };
 
 sortColors([2, 0, 2, 1, 1, 0]);
