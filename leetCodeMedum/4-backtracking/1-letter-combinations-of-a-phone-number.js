@@ -22,6 +22,47 @@
 // Letter mapped to numbers
 // 2: "abc", 3: "def", 4: "ghi", 5: "jkl", 6: "mno", 7: "pqrs", 8: "tuv", 9: "wxyz"
 
+// /**
+//  * @param {string} digits
+//  * @return {string[]}
+//  */
+// var letterCombinations = function (digits) {
+//   const NUMBERS_OBJ = {
+//     2: "abc",
+//     3: "def",
+//     4: "ghi",
+//     5: "jkl",
+//     6: "mno",
+//     7: "pqrs",
+//     8: "tuv",
+//     9: "wxyz",
+//   };
+
+//   if (typeof digits !== "string") {
+//     digits = String(digits);
+//   }
+
+//   if (digits === "") return [];
+
+//   const combinations = [];
+
+//   function inner(currString, i) {
+//     if (i === digits.length) {
+//       combinations.push(currString);
+//       return;
+//     }
+
+//     const letters = NUMBERS_OBJ[digits[i]];
+
+//     for (let j = 0; j < letters.length; j++) {
+//       inner(currString + letters[j], i + 1);
+//     }
+//   }
+//   inner("", 0);
+
+//   return combinations;
+// };
+
 /**
  * @param {string} digits
  * @return {string[]}
@@ -44,23 +85,25 @@ var letterCombinations = function (digits) {
 
   if (digits === "") return [];
 
-  const combinations = [];
+  const queue = [""]
 
-  function inner(currString, i) {
-    if (i === digits.length) {
-      combinations.push(currString);
-      return;
-    }
-
-    const letters = NUMBERS_OBJ[digits[i]];
-
-    for (let j = 0; j < letters.length; j++) {
-      inner(currString + letters[j], i + 1);
+  let counter = 0;
+  for(let digit of digits) {
+    const letters = NUMBERS_OBJ[digit]
+    const size = queue.length
+    for(let i = 0; i < size; i++) {
+      let current = queue.shift();
+      for(let ch of letters) {
+        queue.push(current + ch)
+      }
     }
   }
-  inner("", 0);
+  console.log(queue)
 
-  return combinations;
+
+  return queue;
 };
+letterCombinations("234");
 
-console.log(letterCombinations("23"));
+// letterCombinations("293"
+// [""] -> ["a", "b", "c"] -> ["aw", "ax", "ay", "az", ...] -> ["awd", "awe", awf", "axd"...]
