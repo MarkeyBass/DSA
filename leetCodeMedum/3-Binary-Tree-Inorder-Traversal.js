@@ -61,7 +61,7 @@ function TreeNode(val, left, right) {
  */
 var inorderTraversal = function (root) {
   // // LIFO
-  const stack = [];
+  // const stack = [];
   const results = [];
 
   let currNode = root;
@@ -87,15 +87,24 @@ var inorderTraversal = function (root) {
   // Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
   // Output: [4,2,6,5,7,1,3,9,8]
 
-  //   function traverse(root) {
-  //     results.unshift(root.val)
-  //     if(root.left) traverse(root.left)
-  //     if(root.right) traverse(root.right)
-  //   }
+//             1
+//            /  \
+//           2     3
+//          / \      \
+//         4   5      8
+//            / \    /
+//           6   7  9
 
-  //   traverse(root)
+    function traverse(root) {
+      if(!root) return;
+      if(root.left) traverse(root.left)
+        results.push(root.val)
+      if(root.right) traverse(root.right)
+    }
 
-  return stack;
+    traverse(root)
+
+  return results;
 };
 
 const n1 = new TreeNode(1);
