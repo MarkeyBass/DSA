@@ -27,38 +27,6 @@
  * @return {string[]}
  */
 var letterCombinations = function (digits) {
-  if (typeof digits !== "string") {
-    digits = String(digits);
-  }
-
-  const LETTERS_OBJ = {
-    a: 2,
-    b: 2,
-    c: 2,
-    d: 3,
-    e: 3,
-    f: 3,
-    g: 4,
-    h: 4,
-    i: 4,
-    j: 5,
-    k: 5,
-    l: 5,
-    m: 6,
-    n: 6,
-    o: 6,
-    p: 7,
-    q: 7,
-    r: 7,
-    s: 7,
-    t: 8,
-    u: 8,
-    v: 8,
-    w: 9,
-    x: 9,
-    y: 9,
-    z: 9,
-  };
   const NUMBERS_OBJ = {
     2: "abc",
     3: "def",
@@ -70,24 +38,29 @@ var letterCombinations = function (digits) {
     9: "wxyz",
   };
 
-  const combinations = [];
-
-  function inner(digits) {
-
+  if (typeof digits !== "string") {
+    digits = String(digits);
   }
 
-  
-  // for (let i = 0; i < digits.length; i++) {
-  //   const innerCombination = [];
-  //   for (let char of NUMBERS_OBJ[digits[i]]) {
+  if (digits === "") return [];
 
-  //     innerCombination.push(char);
-  //   }
-  //   combinations.push(innerCombination);
-  // }
+  const combinations = [];
+
+  function inner(currString, i) {
+    if (!digits.length) return;
+
+    const letters = NUMBERS_OBJ[digits[i]];
+    combinations[i] = [];
+    for (let j = 0; j < letters.length; j++) {
+      currString += letters[j];
+    }
+
+    combinations[i].push(currString);
+    if (combinations.length === digits.length) return;
+  }
+  inner("", 0);
 
   return combinations;
 };
 
-console.log(letterCombinations(23))
-
+console.log(letterCombinations(23));
