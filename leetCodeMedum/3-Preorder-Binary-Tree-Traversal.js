@@ -1,18 +1,18 @@
-// Given the root of a binary tree, return the inorder traversal of its nodes' values.
+// Given the root of a binary tree, return the preorder traversal of its nodes' values.
 
 // Example 1:
 // Input: root = [1,null,2,3]
-// Output: [1,3,2]
+// Output: [1,2,3]
 // Explanation:
 //  1
-//    \
-//     2
-//    /
-//   3
+//   \
+//    2
+//   /
+//  3
 
 // Example 2:
 // Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
-// Output: [4,2,6,5,7,1,3,9,8]
+// Output: [1,2,4,5,6,7,3,8,9]
 // Explanation:
 //             1
 //            /  \
@@ -48,53 +48,33 @@ function TreeNode(val, left, right) {
   this.right = right === undefined ? null : right;
 }
 /**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
  * @param {TreeNode} root
  * @return {number[]}
  */
-var inorderTraversal = function (root) {
-  // Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
-  // Output: [4,2,6,5,7,1,3,9,8]
-
-  //             1
-  //            /  \
-  //           2     3
-  //          / \      \
-  //         4   5      8
-  //            / \    /
-  //           6   7  9
-
-  // // LIFO
-  let node = root;
-  const stack = [];
+var preorderTraversal = function (root) {
   const results = [];
 
   // ---------------- Recursive Solution ----------------
-  // function traverse(root) {
-  //   if(!root) return;
-  //   if(root.left) traverse(root.left)
-  //   results.push(root.val)
-  //   if(root.right) traverse(root.right)
+  // function traverse(node) {
+  //   if (!node) return;
+  //   results.push(node.val);
+  //   traverse(node.left);
+  //   traverse(node.right);
   // }
-
-  // traverse(root)
+  // traverse(root);
+  // return results;
 
   // ---------------- Iterative Solution ----------------
-  while (node || stack.length) {
-    while (node) {
-      stack.push(node);
-      node = node.left;
-    }
-    node = stack.pop();
+  // Preorder = root, left, right. After visiting node, we must process left
+  // before right. Stack is LIFO, so push right first, then left (left on top).
+  if (!root) return results;
+
+  const stack = [root];
+  while (stack.length) {
+    const node = stack.pop();
     results.push(node.val);
-    node = node.right;
+    if (node.right) stack.push(node.right);
+    if (node.left) stack.push(node.left);
   }
 
   return results;
@@ -104,7 +84,7 @@ var inorderTraversal = function (root) {
 // ============
 
 // Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
-// Output: [4,2,6,5,7,1,3,9,8]
+// Output: [1,2,4,5,6,7,3,8,9]
 
 //             1
 //            /  \
@@ -113,24 +93,6 @@ var inorderTraversal = function (root) {
 //         4   5      8
 //            / \    /
 //           6   7  9
-
-// traverse(1)
-// traverse(2)
-// traverse(4) push return [4]
-// traverse(2) push        [4, 2]
-// traverse(5)
-// traverse(6) push return [4, 2, 6]
-// traverse(5) push        [4, 2, 6, 5]
-// traverse(7) push return [4, 2, 6, 5, 7]
-// traverse(5)      return
-// traverse(2)      return
-// traverse(1) push        [4, 2, 6, 5, 7, 1]
-// traverse(3) push        [4, 2, 6, 5, 7, 1, 3]
-// traverse(8)
-// traverse(9) push return [4, 2, 6, 5, 7, 1, 3, 9]
-// traverse(8) push return [4, 2, 6, 5, 7, 1, 3, 9, 8]
-// traverse(3) return
-// traverse(1) return
 
 const n1 = new TreeNode(1);
 const n2 = new TreeNode(2);
@@ -151,19 +113,6 @@ n5.left = n6;
 n5.right = n7;
 n8.left = n9;
 
-console.dir(n1, { depth: null });
+// console.dir(n1, { depth: null });
 
-console.log(inorderTraversal(n1));
-
-// Example 2:
-// Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
-// Output: [4,2,6,5,7,1,3,9,8]
-// Explanation:
-//             1
-//            /  \
-//           2     3
-//          / \      \
-//         4   5      8
-//            / \    /
-//           6   7  9
-// (Level-order array above: nulls mark missing children; 3 has no left child, 8 has left 9 only.)
+console.log(preorderTraversal(n1));
