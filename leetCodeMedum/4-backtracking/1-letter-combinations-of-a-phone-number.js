@@ -47,20 +47,20 @@ var letterCombinations = function (digits) {
   const combinations = [];
 
   function inner(currString, i) {
-    if (!digits.length) return;
-
-    const letters = NUMBERS_OBJ[digits[i]];
-    combinations[i] = [];
-    for (let j = 0; j < letters.length; j++) {
-      currString += letters[j];
+    if (i === digits.length) {
+      combinations.push(currString);
+      return;
     }
 
-    combinations[i].push(currString);
-    if (combinations.length === digits.length) return;
+    const letters = NUMBERS_OBJ[digits[i]];
+
+    for (let j = 0; j < letters.length; j++) {
+      inner(currString + letters[j], i + 1);
+    }
   }
   inner("", 0);
 
   return combinations;
 };
 
-console.log(letterCombinations(23));
+console.log(letterCombinations("23"));
