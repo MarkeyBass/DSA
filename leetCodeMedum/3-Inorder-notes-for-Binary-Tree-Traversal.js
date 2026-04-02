@@ -35,10 +35,14 @@ var inorderTraversal = function (root) {
 //           6   7  9
 
     function traverse(root) {
-      if(!root) return;
-      if(root.left) traverse(root.left)
-        results.push(root.val)
-      if(root.right) traverse(root.right)
+      // if(!root) return;
+      // if(root.left) traverse(root.left)
+      // results.push(root.val)
+      // if(root.right) traverse(root.right)
+      if (!root) return;
+      traverse(root.left);
+      results.push(root.val);
+      traverse(root.right);
     }
 
     traverse(root)
