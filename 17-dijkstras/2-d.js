@@ -35,7 +35,8 @@ class WeightGraph {
     const nodes = new PriorityQueue();
     const distances = {};
     const previous = {};
-
+    const path = []; // to return at end
+    let smallest;
     // build initial state:
     for (let vertex in this.adjacencyList) {
       if (vertex === start) {
@@ -51,7 +52,43 @@ class WeightGraph {
     // console.log({ distances });
     // console.log({ "nodes.value": nodes.values });
 
-    // while (priorityQueue.values.length) {}
+    // As long as there is something to visit
+    while (nodes.values.length) {
+      smallest = nodes.dequeue().val;
+      // console.log(smallest);
+
+      if (smallest === finish) {
+        // We are done and we need to build path to return at the end
+        console.log(distances);
+        console.log(previous);
+
+        ///
+        while (previous[smallest]) {
+          path.push(smallest);
+          smallest = previous[smallest];
+        }
+        break;
+      }
+      if (smallest || distances[smallest] !== Infinity) {
+        // loop over neighboring nodes
+        for (let neighbor of this.adjacencyList[smallest]) {
+          // console.log(neighbor);
+          // calculate new distance to neighboring node
+          let candidateDistance = distances[smallest] + neighbor.weight;
+
+          if (candidateDistance < distances[neighbor.node]) {
+            // updating new smallest distance to neighbor
+            distances[neighbor.node] = candidateDistance;
+            // updating previous - how we got to neighbor
+            previous[neighbor.node] = smallest;
+            // enqueue in proirity queue with new priority
+            nodes.enqueue(neighbor.node, candidateDistance);
+          }
+        }
+      }
+    }
+
+    return path.concat(smallest).reverse();
   }
 }
 
@@ -88,8 +125,7 @@ function main() {
   graph.addEdge("D", "F", 1);
   graph.addEdge("E", "F", 1);
 
-  console.log(graph.adjacencyList);
-
+  // console.log(graph.adjacencyList);
   console.log(graph.dijskstra("A", "E"));
 }
 
