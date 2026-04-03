@@ -32,21 +32,24 @@ class WeightGraph {
   }
 
   dijskstra(start, finish) {
+    const nodes = new PriorityQueue();
     const distances = {};
     const previous = {};
-    const visited = [];
-    let currVertex = start;
-    for (let key in this.adjacencyList) {
-      distances[key] = Infinity;
-      previous[key] = null;
-    }
-    distances[start.weight] = 0;
 
-    const priorityQueue = new PriorityQueue();
-
-    for (let [node, distance] of Object.entries(distances)) {
-      priorityQueue.enqueue(node, distance);
+    // build initial state:
+    for (let vertex in this.adjacencyList) {
+      if (vertex === start) {
+        distances[vertex] = 0;
+        nodes.enqueue(vertex, 0);
+      } else {
+        distances[vertex] = Infinity;
+        nodes.enqueue(vertex, Infinity);
+      }
+      previous[vertex] = null;
     }
+
+    // console.log({ distances });
+    // console.log({ "nodes.value": nodes.values });
 
     // while (priorityQueue.values.length) {}
   }
@@ -87,21 +90,21 @@ function main() {
 
   console.log(graph.adjacencyList);
 
-  console.log(graph.dijskstra("A", "E"))
+  console.log(graph.dijskstra("A", "E"));
 }
 
 main();
 
 // function priorityQueueTest() {
-  // const q = new PriorityQueue();
-  // q.enqueue("A", 0);
-  // q.enqueue("B", 3);
-  // q.enqueue("C", 5);
-  // q.enqueue("D", 2);
-  // q.enqueue("Q", 20);
-  // q.enqueue("P", 1.5);
-  // console.log(q.values);
-  // console.log(q.dequeue());
-  // console.log(q.dequeue());
-  // console.log(q.values);
+// const q = new PriorityQueue();
+// q.enqueue("A", 0);
+// q.enqueue("B", 3);
+// q.enqueue("C", 5);
+// q.enqueue("D", 2);
+// q.enqueue("Q", 20);
+// q.enqueue("P", 1.5);
+// console.log(q.values);
+// console.log(q.dequeue());
+// console.log(q.dequeue());
+// console.log(q.values);
 // }
