@@ -13,7 +13,12 @@ minCoinChange([1, 2, 3, 4, 5], 11); // this should return: [5, 5, 1]
 minCoinChange([5, 10, 15, 20, 25], 85); // this should return: [25, 25, 25, 10]
 minCoinChange([1, 5, 6, 9], 11); // this should return: [9, 1, 1]
 
+console.log("================= Extra Tests ===================")
+
+minCoinChange([1, 2, 5, 10, 15, 20, 25], 83); // this should return: [25, 25, 25, 5, 2, 1] / [20, 20, 20, 20, 2, 1]
+
 function minCoinChange(coins, amount) {
+  if(amount <= 0 || coins.length === 0) return [];
   // write your code here
   const finalArr = [];
   let tempSum = 0;
@@ -25,5 +30,13 @@ function minCoinChange(coins, amount) {
     }
   }
   console.log(finalArr, tempSum)
+  if (tempSm !== amount) return [];
   return finalArr
 }
+
+
+
+
+
+// add another function that will calculate the most efficient way to solve the problem (minimal coins)
+minCoinChange([1, 2, 5, 10, 13, 15, 20, 25], 83); // this should return: [25, 25, 20, 13] not [ 25, 25, 25, 5, 2, 1 ] 
