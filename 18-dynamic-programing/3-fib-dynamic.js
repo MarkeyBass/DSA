@@ -1,31 +1,25 @@
-// function fib(n) {
-//   if (n <= 2) return 1;
-//   return fib(n - 1) + fib(n - 2);
-// }
+// // MEMOIZATION
 
-// console.log(fib(5));
-
-
-
-// function fib(num) {
-//   const arr = [1, 1];
-//   for (let i = 2; i < num; i++) {
-//     arr[i] = arr[i - 1] + arr[i - 2];
-//   }
-//   // console.log(arr)
-//   return arr[arr.length - 1];
-// }
+const objDone = {};
 
 function fib(num) {
+  if (num in objDone) return objDone[num];
   if (num <= 2) return 1;
-  return fib(num - 1) + fib(num - 2);
+  const result = fib(num - 1) + fib(num - 2);
+  objDone[num] = result;
+  return result;
 }
 
-//                 fib(5 - 1)             +                       fib(5 - 2) 
-//     fib(4-1)      +      fib(4-2) = 1;       +             fib(3-1)=1 + fib(3-2)=1 
-// fib(3-1)=1 + fib(3-2)=1;                              
-    
+console.log(fib(70));
+console.log(objDone);
 
 
+// function fib(n, memo = []) {
+//   if (memo[n] !== undefined) return memo[n];
+//   if (n <= 2) return 1;
+//   var res = fib(n - 1, memo) + fib(n - 2, memo);
+//   memo[n] = res;
+//   return res;
+// }
 
-console.log(fib(5));
+// console.log(fib(45));

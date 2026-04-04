@@ -31,4 +31,4 @@ function fib(num) {
 
 
 
-console.log(fib(5));
+console.log(fib(45));
