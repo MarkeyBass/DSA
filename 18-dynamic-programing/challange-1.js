@@ -30,7 +30,7 @@ function minCoinChange(coins, amount) {
     }
   }
   console.log(finalArr, tempSum)
-  if (tempSm !== amount) return [];
+  if (tempSum !== amount) return [];
   return finalArr
 }
 

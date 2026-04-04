@@ -16,7 +16,14 @@ coinChange(denominations, 145); // 622
 coinChange(denominations, 1451); // 425663
 coinChange(denominations, 14511); // 409222339
 
-function coinChange() {
-  // add whatever parameters you deem necessary - good luck!
-  
+function coinChange(coins, amount) {
+  const possibilities = [];
+  const tempSum = 0;
+  for(let coin of coins) {
+    while(coins + tempSum <= sum) {
+      for(let i = 0; i<= sum; i++) {
+        
+      }
+    }
+  }
 }
