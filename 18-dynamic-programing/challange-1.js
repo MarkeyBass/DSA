@@ -15,4 +15,15 @@ minCoinChange([1, 5, 6, 9], 11); // this should return: [9, 1, 1]
 
 function minCoinChange(coins, amount) {
   // write your code here
+  const finalArr = [];
+  let tempSum = 0;
+  for (let i = coins.length - 1; i >= 0; i--) {
+    if (tempSum === amount) break;
+    while(amount >= tempSum + coins[i]) {
+      finalArr.push(coins[i])
+      tempSum+=coins[i]
+    }
+  }
+  console.log(finalArr, tempSum)
+  return finalArr
 }
