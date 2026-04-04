@@ -13,30 +13,61 @@ minCoinChange([1, 2, 3, 4, 5], 11); // this should return: [5, 5, 1]
 minCoinChange([5, 10, 15, 20, 25], 85); // this should return: [25, 25, 25, 10]
 minCoinChange([1, 5, 6, 9], 11); // this should return: [9, 1, 1]
 
-console.log("================= Extra Tests ===================")
+console.log("================= Extra Tests ===================");
 
 minCoinChange([1, 2, 5, 10, 15, 20, 25], 83); // this should return: [25, 25, 25, 5, 2, 1] / [20, 20, 20, 20, 2, 1]
 
 function minCoinChange(coins, amount) {
-  if(amount <= 0 || coins.length === 0) return [];
+  if (amount <= 0 || coins.length === 0) return [];
   // write your code here
   const finalArr = [];
   let tempSum = 0;
   for (let i = coins.length - 1; i >= 0; i--) {
     if (tempSum === amount) break;
-    while(amount >= tempSum + coins[i]) {
-      finalArr.push(coins[i])
-      tempSum+=coins[i]
+    while (amount >= tempSum + coins[i]) {
+      finalArr.push(coins[i]);
+      tempSum += coins[i];
     }
   }
-  console.log(finalArr, tempSum)
+  console.log(finalArr, tempSum);
   if (tempSum !== amount) return [];
-  return finalArr
+  return finalArr;
 }
 
+// function minCoinChangeDP(coins, amount) {
+//   if (amount <= 0 || coins.length === 0) return [];
 
+//   const dp = new Array(amount + 1).fill(Infinity);
+//   const lastCoin = new Array(amount + 1).fill(null);
+//   dp[0] = 0;
 
+//   for (let a = 1; a <= amount; a++) {
+//     for (const coin of coins) {
+//       if (coin > a || dp[a - coin] === Infinity) continue;
+//       const candidate = 1 + dp[a - coin];
+//       if (candidate < dp[a]) {
+//         dp[a] = candidate;
+//         lastCoin[a] = coin;
+//       }
+//     }
+//   }
 
+//   if (dp[amount] === Infinity) return [];
 
-// add another function that will calculate the most efficient way to solve the problem (minimal coins)
-minCoinChange([1, 2, 5, 10, 13, 15, 20, 25], 83); // this should return: [25, 25, 20, 13] not [ 25, 25, 25, 5, 2, 1 ] 
+//   const result = [];
+//   let remaining = amount;
+//   while (remaining > 0) {
+//     const c = lastCoin[remaining];
+//     if (c === null) return [];
+//     result.push(c);
+//     remaining -= c;
+//   }
+//   result.sort((a, b) => b - a);
+
+//   console.log({dp, lastCoin})
+//   return result;
+// }
+
+// console.log(
+//   minCoinChangeDP([1, 2, 5, 10, 13, 15, 20, 25], 83)
+// ); // [25, 25, 20, 13]

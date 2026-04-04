@@ -17,13 +17,14 @@ coinChange(denominations, 1451); // 425663
 coinChange(denominations, 14511); // 409222339
 
 function coinChange(coins, amount) {
-  const possibilities = [];
-  const tempSum = 0;
-  for(let coin of coins) {
-    while(coins + tempSum <= sum) {
-      for(let i = 0; i<= sum; i++) {
-        
-      }
+  const ways = new Array(amount + 1).fill(0);
+  ways[0] = 1;
+  for (const coin of coins) {
+    for (let a = coin; a <= amount; a++) {
+      ways[a] += ways[a - coin];
     }
   }
+  console.log(ways[amount]);
+  return ways[amount];
 }
+
