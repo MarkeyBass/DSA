@@ -21,9 +21,11 @@ function fib(num) {
   return fib(num - 1) + fib(num - 2);
 }
 
-//                 fib(5 - 1)             +                       fib(5 - 2) 
-//     fib(4-1)      +      fib(4-2) = 1;       +             fib(3-1)=1 + fib(3-2)=1 
-// fib(3-1)=1 + fib(3-2)=1;                              
+
+//                                 fib(5)
+//                 fib(4)           +                 fib(3) 
+//        fib(3)     +    fib(1)=1;            fib(2)=1 + fib(1)=1 
+// fib(2)=1 + fib(1)=1;                              
     
 
 
