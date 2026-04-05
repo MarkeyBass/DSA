@@ -1,7 +1,5 @@
 // Given two integers a and b, return the sum of the two integers without using the operators + and -.
 
- 
-
 // Example 1:
 
 // Input: a = 1, b = 2
@@ -21,8 +19,15 @@
  * @param {number} b
  * @return {number}
  */
-var getSum = function(a, b) {
-    return a + b;
+var getSum = function (a, b) {
+  // XOR = sum without carry; (a & b) << 1 = carry. Repeat until no carry.
+  // Bitwise ops use 32-bit signed integers in JS (fine for LeetCode's range).
+  while (b !== 0) {
+    const carry = (a & b) << 1;
+    a = a ^ b;
+    b = carry;
+  }
+  return a;
 };
 
 
