@@ -25,27 +25,47 @@ function TreeNode(val) {
  * @param {TreeNode} root
  * @return {string}
  */
+// var serialize = function (root) {
+//   if (!root) return "";
+//   const serializedArr = [];
+//   (function inner(node) {
+//     let val;
+//     if (node === null) {
+//       val = null;
+//       serializedArr.push(null);
+//       return null;
+//     } else {
+//       val = node.val;
+//       serializedArr.push(node.val);
+//     }
+
+//     inner(node.left);
+//     inner(node.right);
+//   })(root);
+
+//   console.log(JSON.stringify(serializedArr));
+//   return JSON.stringify(serializedArr);
+// };
+
 var serialize = function (root) {
-  if (!root) return "";
-  const serializedArr = [];
-  (function inner(node) {
-    let val;
-    if (node === null) {
-      val = null;
-      serializedArr.push(null);
-      return null;
+  if (!root) return JSON.stringify([]);
+  const queue = [root];
+  const results = [];
+  while (queue.length) {
+    const node = queue.shift();
+    if (node) {
+      results.push(node.val);
+      queue.push(node.left);
+      queue.push(node.right);
     } else {
-      val = node.val;
-      serializedArr.push(node.val);
+      results.push(null);
     }
-
-    inner(node.left);
-    inner(node.right);
-  })(root);
-
-  console.log(JSON.stringify(serializedArr));
-  return JSON.stringify(serializedArr);
+  }
+  const returnVal = JSON.stringify(results);
+  console.log(returnVal);
+  return returnVal;
 };
+
 
 /**
  * Decodes your encoded data to tree.
@@ -53,7 +73,34 @@ var serialize = function (root) {
  * @param {string} data
  * @return {TreeNode}
  */
-var deserialize = function (data) {};
+var deserialize = function (data) {
+  if (!data || !data.length) return null;
+  const arr = JSON.parse(data);
+  if (!arr.length) return null;
+  const root = new TreeNode(arr[0]);
+  const queue = [root];
+  let i = 1;
+  while (queue.length && i < arr.length) {
+    const node = queue.shift();
+    // Left child (always consume index i when present)
+    if (i < arr.length) {
+      if (arr[i] !== null) {
+        node.left = new TreeNode(arr[i]);
+        queue.push(node.left);
+      }
+      i++;
+    }
+    // Right child
+    if (i < arr.length) {
+      if (arr[i] !== null) {
+        node.right = new TreeNode(arr[i]);
+        queue.push(node.right);
+      }
+      i++;
+    }
+  }
+  return root;
+};
 
 /**
  * Your functions will be called as such:
@@ -73,4 +120,7 @@ n1.right = n3;
 n3.left = n4;
 n3.right = n5;
 
-serialize(n1);
+const serializedData = serialize(n1);
+console.log("====================================");
+const rebuilt = deserialize(serializedData);
+console.log(serialize(rebuilt) === serializedData);
